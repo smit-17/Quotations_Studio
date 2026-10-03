@@ -13,4 +13,4 @@
 - Company details are snapshotted per quotation (Invoice.company); defaults only seed new quotations.
 - Diamond rows store Stone and Type separately; legacy stone names migrate on quotation load without inferring absent Type values, preserving saved quotations.
 - Diamond rows are edited inline (desktop table cells, mobile cards); no modal editor. Combo dropdown lists use fixed positioning so scroll containers never clip them.
-- Quotations, settings, options and logos persist in Lovable Cloud via server functions in src/lib/cloud.functions.ts using the service client after a password-session check (cloud.server.ts); browser storage is only read once for legacy import. Why: single shared password, no per-user auth.
+- Quotations, settings, options and logos persist in Lovable Cloud via the browser module src/lib/cloud.ts calling SECURITY DEFINER RPCs app_login/app_call with a session token in localStorage; logos are stored inline as data URLs. Why: app must run on static hosts like Vercel with no server or service key.

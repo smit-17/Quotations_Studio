@@ -15,7 +15,7 @@ import { CompanySettings } from "@/components/invoice/CompanySettings";
 import { ManageOptions } from "@/components/invoice/ManageOptions";
 import { Combo } from "@/components/invoice/Combo";
 import { OptionsContext, OPTIONS_KEY, defaultOptions, normalizeOptions, readLegacyOptions, type Options } from "@/lib/options";
-import { checkAccess, deleteDraftFn, importLocalFn, loadWorkspace, loginFn, logoutFn, saveQuotationFn, saveSettingFn, setCurrentFn, uploadLogoFn } from "@/lib/cloud.functions";
+import { checkAccess, deleteDraftFn, importLocalFn, loadWorkspace, loginFn, logoutFn, saveQuotationFn, saveSettingFn, setCurrentFn, uploadLogoFn } from "@/lib/cloud";
 import { fmtCt, fmtDate, fmtMoney, fmtNum, invoiceCalc, migrateStoneRows, newInvoice, newRow, rowCalc, uid, companyOf, builtinDefaults, COMPANY, DEFAULT_TERMS, DEFAULTS_KEY, type CompanyDefaults, type CompanyInfo, type DiamondRow, type Invoice } from "@/lib/invoice";
 import logo from "@/assets/lepdo-logo.jpg";
 

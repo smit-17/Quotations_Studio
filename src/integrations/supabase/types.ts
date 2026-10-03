@@ -16,18 +16,21 @@ export type Database = {
     Tables: {
       access_config: {
         Row: {
+          bcrypt_hash: string | null
           id: number
           iterations: number
           password_hash: string
           salt: string
         }
         Insert: {
+          bcrypt_hash?: string | null
           id?: number
           iterations: number
           password_hash: string
           salt: string
         }
         Update: {
+          bcrypt_hash?: string | null
           id?: number
           iterations?: number
           password_hash?: string
@@ -258,6 +261,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      _session_ok: { Args: { p_token: string }; Returns: boolean }
+      app_call: {
+        Args: { p_action: string; p_data?: Json; p_token: string }
+        Returns: Json
+      }
+      app_login: { Args: { p_password: string }; Returns: Json }
       save_quotation: {
         Args: {
           p_expected: number
