@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import logo from "@/assets/lepdo-logo.jpg";
 import {
-  COL_HEADS, COL_WIDTHS, PAGE, companyOf, logoBox, validUrl, websiteUrl, fmtCt, fmtDate, fmtMoney, fmtNum, invoiceCalc, paginate, rowCalc, sizeText,
+  COL_HEADS, COL_WIDTHS, PAGE, companyOf, logoBox, validUrl, websiteUrl, fmtCt, docTitle, fmtDate, fmtMoney, fmtNum, invoiceCalc, paginate, rowCalc, sizeText,
   summaryLines, termsList, NOTES_W, NOTE_LH, type Invoice,
 } from "@/lib/invoice";
 
@@ -66,7 +66,7 @@ function Header({ inv }: { inv: Invoice }) {
       <T x={W - M} y={32.3} size={7.5} align="right" className="text-muted-foreground">{co.address1}</T>
       <T x={W - M} y={35.8} size={7.5} align="right" className="text-muted-foreground">{co.address2}</T>
 
-      <T x={W / 2} y={41} size={13} align="center" className="font-bold text-navy">QUOTATION</T>
+      <T x={W / 2} y={41} size={13} align="center" className="font-bold text-navy">{docTitle(inv)}</T>
       <div className="absolute bg-gold" style={{ left: `${W / 2 - 10}mm`, top: `${43.5}mm`, width: "20mm", height: "0.4mm" }} />
 
       <div className="absolute bg-gold" style={{ left: `${M}mm`, top: "47mm", width: `${W - 2 * M}mm`, height: "0.4mm" }} />

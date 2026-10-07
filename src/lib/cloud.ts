@@ -69,7 +69,7 @@ function quoteFromDb(d: R, rows: R[]): { inv: Invoice; version: number; savedAsD
   return {
     version: Number(d.version), savedAsDraft: !!d.saved_as_draft,
     inv: {
-      id: d.id, customerName: d.customer_name, customerAddress: d.customer_address, invoiceNumber: d.quotation_number,
+      id: d.id, customerName: d.customer_name, customerAddress: d.customer_address, invoiceNumber: d.quotation_number, docType: d.doc_type || "Quotation",
       invoiceDate: d.quotation_date, sellerName: d.seller_name, currency: d.currency,
       discountType: d.discount_type === "fixed" ? "fixed" : "percent", discountValue: d.discount_value, shipping: d.shipping,
       otherLabel: d.other_label, otherCharges: d.other_charges, showSecondary: d.show_secondary,

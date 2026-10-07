@@ -16,7 +16,7 @@ import { ManageOptions } from "@/components/invoice/ManageOptions";
 import { Combo } from "@/components/invoice/Combo";
 import { OptionsContext, OPTIONS_KEY, defaultOptions, normalizeOptions, readLegacyOptions, type Options } from "@/lib/options";
 import { checkAccess, deleteDraftFn, importLocalFn, loadWorkspace, loginFn, logoutFn, saveQuotationFn, saveSettingFn, setCurrentFn, uploadLogoFn } from "@/lib/cloud";
-import { fmtCt, fmtDate, fmtMoney, fmtNum, invoiceCalc, migrateStoneRows, newInvoice, newRow, rowCalc, uid, companyOf, builtinDefaults, COMPANY, DEFAULT_TERMS, DEFAULTS_KEY, type CompanyDefaults, type CompanyInfo, type DiamondRow, type Invoice } from "@/lib/invoice";
+import { DOC_TYPES, fmtCt, fmtDate, fmtMoney, fmtNum, invoiceCalc, migrateStoneRows, newInvoice, newRow, rowCalc, uid, companyOf, builtinDefaults, COMPANY, DEFAULT_TERMS, DEFAULTS_KEY, type CompanyDefaults, type CompanyInfo, type DiamondRow, type Invoice } from "@/lib/invoice";
 import logo from "@/assets/lepdo-logo.jpg";
 
 export const Route = createFileRoute("/")({
@@ -324,6 +324,7 @@ function Studio({ onLogout }: { onLogout: () => void }) {
 
             <Section title="Quotation details">
               <div className="grid gap-3 sm:grid-cols-2">
+                <Field label="Document Type"><select value={inv.docType || "Quotation"} onChange={(e) => set("docType", e.target.value)} className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">{DOC_TYPES.map((d) => <option key={d} value={d}>{d}</option>)}</select></Field>
                 <Field label="Quotation Number"><Input value={inv.invoiceNumber} onChange={(e) => set("invoiceNumber", e.target.value)} /></Field>
                 <Field label="Quotation Date"><Input type="date" value={inv.invoiceDate} onChange={(e) => set("invoiceDate", e.target.value)} /></Field>
                 <Combo label="Seller" group="seller" value={inv.sellerName} onChange={(v) => set("sellerName", v)} />

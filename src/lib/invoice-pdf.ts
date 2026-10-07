@@ -2,7 +2,7 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import logoUrl from "@/assets/lepdo-logo.jpg";
 import {
-  COL_HEADS, COL_WIDTHS, PAGE, companyOf, logoBox, validUrl, websiteUrl, fmtCt, fmtDate, fmtMoney, fmtNum, invoiceCalc, paginate, rowCalc, sizeText,
+  COL_HEADS, COL_WIDTHS, PAGE, companyOf, logoBox, validUrl, websiteUrl, fmtCt, docTitle, fmtDate, fmtMoney, fmtNum, invoiceCalc, paginate, rowCalc, sizeText,
   summaryLines, termsList, NOTES_W, NOTE_LH, noteLines, type Invoice,
 } from "./invoice";
 
@@ -66,7 +66,7 @@ export async function exportInvoicePdf(inv: Invoice): Promise<string> {
   txt(co.address1, W - M, 32.3, 7.5, MUTED, false, "right");
   txt(co.address2, W - M, 35.8, 7.5, MUTED, false, "right");
 
-  txt("QUOTATION", W / 2, 41, 13, NAVY, true, "center");
+  txt(docTitle(inv), W / 2, 41, 13, NAVY, true, "center");
   doc.setFillColor(...GOLD); doc.rect(W / 2 - 10, 43.5, 20, 0.4, "F");
 
   doc.setFillColor(...GOLD); doc.rect(M, 47, W - 2 * M, 0.4, "F");

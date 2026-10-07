@@ -31,6 +31,7 @@ export type Invoice = {
   customerName: string;
   customerAddress: string;
   invoiceNumber: string;
+  docType?: string;
   invoiceDate: string;
   sellerName: string;
   currency: string;
@@ -202,7 +203,7 @@ export const fmtMoney = (n: number, cur: string) =>
   `${cur} ${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 export const fmtNum = (n: number, d = 2) =>
   n.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-export const fmtCt = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+export const fmtCt = (n: number) => n.toLocaleString("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 3 });
 
 export const fmtDate = (iso: string) => {
   if (!iso) return "";
@@ -210,7 +211,9 @@ export const fmtDate = (iso: string) => {
   return new Date(y, m - 1, d).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
 };
 
-export const sizeText = (r: DiamondRow) => (r.size ? `${r.size} ${r.sizeUnit}` : "");
+export const sizeText = (r: DiamondRow) => { const v = (r.size ?? "").trim(); return !v ? "" : /^[\d.]+$/.test(v) ? `${v} ${r.sizeUnit}` : v; };
+export const DOC_TYPES = ["Quotation", "Proforma Invoice", "Invoice"] as const;
+export const docTitle = (inv: { docType?: string }) => (inv.docType || "Quotation").toUpperCase();
 /** Move only recognisable legacy stone names; leave unknown/missing types untouched. */
 export const migrateStoneRows = (inv: Invoice): Invoice => ({
   ...inv,

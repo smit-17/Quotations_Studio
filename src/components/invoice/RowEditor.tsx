@@ -37,7 +37,7 @@ export function RowCardEditor({ row, currency, onChange }: { row: DiamondRow; cu
       {C("Type", "type", "type")}
       {C("Shape", "shape", "shape")}
       <div className="grid grid-cols-[1fr_96px] gap-2">
-        {F("Size", "size", { type: "number", inputMode: "decimal", step: "0.01", min: 0 })}
+        {F("Size", "size", { placeholder: "e.g. 3×4 MM, 7.09 CT" })}
         {C("Unit", "sizeUnit", "sizeUnit")}
       </div>
       {C("Colour", "colour", "colour")}
@@ -51,7 +51,7 @@ export function RowCardEditor({ row, currency, onChange }: { row: DiamondRow; cu
       <div className="grid grid-cols-2 gap-2 sm:col-span-2">
         {F("Weight per Piece (ct) — reference only", "wtPerPcs", { type: "number", inputMode: "decimal", step: "0.0001", min: 0 })}
         {F("Total Pieces", "pcs", { type: "number", inputMode: "numeric", step: "1", min: 1 })}
-        {F("Total Weight (ct)", "totalWt", { type: "number", inputMode: "decimal", step: "0.0001", min: 0, placeholder: "Enter total carats" })}
+        {F("Total Weight (ct)", "totalWt", { type: "number", inputMode: "decimal", step: "0.001", min: 0, placeholder: "0.000" })}
         {F(`Price per Carat (${currency})`, "pricePerCt", { type: "number", inputMode: "decimal", step: "0.01", min: 0 })}
       </div>
       <div className="rounded-md bg-navy px-3 py-2 text-center text-sm text-primary-foreground sm:col-span-2" aria-live="polite">
@@ -79,7 +79,7 @@ export function RowCells({ row, onChange }: { row: DiamondRow; onChange: Patch }
       <td className="p-1">{C("stone", "Stone", "stone")}</td>
       <td className="p-1">{C("type", "Type", "type")}</td>
       <td className="p-1">{C("shape", "Shape", "shape")}</td>
-      <td className="p-1"><div className="flex gap-1">{I("size", "Size", num("0.01"))}<div className="w-16 shrink-0">{C("sizeUnit", "Size unit", "sizeUnit")}</div></div></td>
+      <td className="p-1"><div className="flex gap-1">{I("size", "Size", { placeholder: "3×4 MM" })}<div className="w-16 shrink-0">{C("sizeUnit", "Size unit", "sizeUnit")}</div></div></td>
       <td className="p-1">{C("colour", "Colour", "colour")}</td>
       <td className="p-1">{C("clarity", "Clarity", "clarity")}</td>
       <td className="p-1"><div className="grid grid-cols-3 gap-1">{C("cut", "Cut", "cut")}{C("polish", "Polish", "polish")}{C("symmetry", "Symmetry", "symmetry")}</div></td>
@@ -87,7 +87,7 @@ export function RowCells({ row, onChange }: { row: DiamondRow; onChange: Patch }
       <td className="p-1">{C("fluorescence", "Fluorescence", "fluorescence")}</td>
       <td className="p-1">{I("wtPerPcs", "Weight per piece (reference)", num("0.0001"))}</td>
       <td className="p-1">{I("pcs", "Total pieces", { ...num("1"), inputMode: "numeric", min: 1 })}</td>
-      <td className="p-1">{I("totalWt", "Total weight (ct)", num("0.0001"))}</td>
+      <td className="p-1">{I("totalWt", "Total weight (ct)", num("0.001"))}</td>
       <td className="p-1">{I("pricePerCt", "Price per carat", num("0.01"))}</td>
       <td className="px-2 text-right font-bold text-navy">{fmtNum(c.amount)}</td>
     </>

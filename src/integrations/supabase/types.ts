@@ -193,6 +193,7 @@ export type Database = {
           customer_name: string
           discount_type: string
           discount_value: string
+          doc_type: string
           exchange_rate: string
           id: string
           other_charges: string
@@ -216,6 +217,7 @@ export type Database = {
           customer_name?: string
           discount_type?: string
           discount_value?: string
+          doc_type?: string
           exchange_rate?: string
           id: string
           other_charges?: string
@@ -239,6 +241,7 @@ export type Database = {
           customer_name?: string
           discount_type?: string
           discount_value?: string
+          doc_type?: string
           exchange_rate?: string
           id?: string
           other_charges?: string
